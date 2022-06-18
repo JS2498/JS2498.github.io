@@ -11,7 +11,7 @@ profile:
 
 news: false  # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
-social: false  # includes social icons at the bottom of the page
+social: true  # includes social icons at the bottom of the page
 ---
 
 I am a $$2^{\rm nd}$$ year MS (Research) student at the Indian Institute of Technology, Dharwad (IIT Dharwad), India. I am currently working on **Optimization of Age of Information in Wireless Communication Networks** with **Asst. Prof. Rajshekhar V Bhat**.
