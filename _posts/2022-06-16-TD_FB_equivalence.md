@@ -11,7 +11,7 @@ The temporal difference (TD) error from eligibility trace update rule is,
 
 $$ \Delta V_t^{TD}(s) = \alpha \delta_t e_t(s) $$
 
-where, $$\deta_t = r_{t+1} + \gamma V(s_{t+1}) - V(s_t)$$ and $e_t(s) = \gamma \lambda e_{t-1}(s) + I_{ss_t}$$ with $$I_{ss_t} = 1$$ if $$s=s_t$$ and $$0$$ otherwise.
+where, $$\delta_t = r_{t+1} + \gamma V(s_{t+1}) - V(s_t)$$ and $e_t(s) = \gamma \lambda e_{t-1}(s) + I_{ss_t}$$ with $$I_{ss_t} = 1$$ if $$s=s_t$$ and $$0$$ otherwise.
 
 Expanding $$e_t(s)$$ we obtain
 
