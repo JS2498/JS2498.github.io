@@ -51,7 +51,7 @@ Similar arguments as done above will lead to,
 
 $$ T(V_1(s)) - T(V_2(s)) \leq \gamma ||V_1 - V_2||_{\infty}, \;\; \forall s \in S $$
 
-Since $$x \leq y$$ and $$-x \leq y, \;\; \implies |x| \leq y$$. Hence we have,
+Since $$x \leq y$$ and $$-x \leq y, \; \; \implies |x| \leq y$$. Hence we have,
 $$|T(V_2(s)) - T(V_1(s))| \leq \gamma ||V_1 - V_2||_{\infty} \;\; \forall s \in S$$
 
 As the above expression is true for all $$s\in S$$. We have,
