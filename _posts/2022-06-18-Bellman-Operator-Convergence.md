@@ -7,7 +7,11 @@ tags: ReinforcementLearning
 categories: rl-posts
 ---
 
-In this blog, we show that $$||T(V_1) - T(V_2)||_{\infty} \leq \gamma ||V_1 - V_2||_{\infty}$$ where, $$\gamma \in [0,1)$$.
+In this blog, we show that 
+
+$$||T(V_1) - T(V_2)||_{\infty} \leq \gamma ||V_1 - V_2||_{\infty}$$ 
+
+where, $$\gamma \in (0,1)$$ is the discount factor.
 
 Consider state $$s \in S$$. The Bellman operator is defined as,
 
