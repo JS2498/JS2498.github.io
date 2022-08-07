@@ -76,7 +76,11 @@ $$T(V_1(s)) - T(V_2(s)) \leq  \left(R(s,a_1^*) + \gamma \sum_{s' \in S} P_{s,s'}
 
 $$ T(V_1(s)) - T(V_2(s)) \leq \gamma \sum_{s' \in S} P_{s,s'}(a_1^*) \left( V_1(s') - V_2(s')\right) \;\; (\because a_1^* \in A)$$
 
-Now $$\forall s' \in S$$, we have $$V_1(s') - V_2(s) \leq \max_{s' \in S} |V_1(s') - V_2(s')| = ||V_1 - V_2||_{\infty}$$
+Now $$\forall s' \in S$$ we have,
+
+$$V_1(s') - V_2(s) \leq \max_{s' \in S} |V_1(s') - V_2(s')| = ||V_1 - V_2||_{\infty}.$$
+
+Hence,
 
 $$ T(V_1(s)) - T(V_2(s)) \leq \gamma \sum_{s' \in S} P_{s,s'} ||V_1 - V_2||_{\infty}$$
 
