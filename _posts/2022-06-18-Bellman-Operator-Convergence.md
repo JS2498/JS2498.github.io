@@ -103,3 +103,9 @@ $$|T(V_2(s)) - T(V_1(s))| \leq \gamma ||V_1 - V_2||_{\infty} \;\; \forall s \in 
 As the above expression is true for all $$s\in S$$. We have,
 
 $$||T(V_1) - T(V_2)||_{\infty} \leq \gamma ||V_1 - V_2||_{\infty}$$
+
+
+# References:
+
+* [Theory: Infinite horizon discounted MDP](https://adityam.github.io/stochastic-control/inf-mdp/discounted-mdp/)
+* Reinforcement Learning Course (CS420) - IIT Dharwad
