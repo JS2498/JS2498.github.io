@@ -37,7 +37,7 @@ Briefly the algorithm corresponding to value iteration is given as follows:
   
   * $$V_t(s) = \max_a \left(r(s,a) + \gamma \sum_{s' \in S} P_{s,s'}(a)V_{t-1}(s')\right) \;\; \forall s \in S.$$
   
-Perform the above step until $$V_{t}(s) = V_{t-1}(s) = V^*(s),\;\; \forall s \in S$$ (Practically stop when $$ |V_{t}(s) - V_{t-1}(s)| \leq \epsilon \;\; \forall s \in S$$ where $$\epsilon$$ is the tolerence level.
+Perform the above step until $$V_{t}(s) = V_{t-1}(s) = V^*(s),\;\; \forall s \in S$$ (Practically stop when |$$V_{t}(s) - V_{t-1}(s)| \leq \epsilon \;\; \forall s \in S$$ where $$\epsilon$$ is the tolerence level.
 
 The policy evaluation and imporvement step in the value iteration can be represented as,
 
