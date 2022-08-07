@@ -43,7 +43,7 @@ The policy evaluation and imporvement step in the value iteration can be represe
 
 $$ T(V(s)) =  \max_a \left(r(s,a) + \gamma \sum_{s' \in S} P_{s,s'}(a)V(s')\right) \;\; \forall s \in S,$$
 
-where $$T: \mathbb{R}^{|S|} \to \mathbb{R}^{|S|}$$ is called the Bellman Operator. Let $$\mathbf{V} = \{V(s) : s\in S\}$$ be the $$|S|$$-dimensional vector. Then we can show that $$\mathbf{V}^*$$ is unique (i.e., $$T(\mathbf{V}) \neq V \;\; \forall \; \mathbf{V} \neq \mathbf{V}^*$$). Hence, $$\mathbf{V}^*$$ is called the fixed point of operator $T$. This arises due to the fact that the Bellman operator $T$ has the contraction property.
+where $$T: \mathbb{R}^{|S|} \to \mathbb{R}^{|S|}$$ is called the Bellman Operator. Let $$\mathbf{V} = \{V(s) : s\in S\}$$ be the $$|S|$$-dimensional vector. Then we can show that $$\mathbf{V}^*$$ is unique (i.e., $$T(\mathbf{V}) \neq \mathbf{V} \;\; \forall \; \mathbf{V} \neq \mathbf{V}^*$$). Hence, $$\mathbf{V}^*$$ is called the fixed point of operator $T$. This arises due to the fact that the Bellman operator $T$ has the contraction property.
 In the below, we prove the contraction propety by showing that,
 
 $$||T(V_1) - T(V_2)||_{\infty} \leq \gamma ||V_1 - V_2||_{\infty}$$
