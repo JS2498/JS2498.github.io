@@ -11,7 +11,7 @@ A Markov Decision Process (MDP) framework is defined using the tuple $$(S, A, p,
 
 For the defined MDP settting we consider that the objective is to find a optimal policy $$\pi: S \to A$$ (stationary deterministic policy) such that the discounted reward is maximized, i.e.,
 
-$$ \pi^* =  \argmax_{\pi} \mathbb{E}\left[\sum_{t=0}^T \gamma^t r(s_t, \pi(s_t))) \right]$$
+$$ \pi^* =  {\rm argmax_{\pi}} \mathbb{E}\left[\sum_{t=0}^T \gamma^t r(s_t, \pi(s_t))) \right]$$
 
 where $$s_t$$ is the state at time instant $$t$$, $$a_t = \pi(s_t)$$ is the action taken at time instant $t$ follwing the policy $$\pi$$, $$\gamma \in (0,1]$$ is the discount factor and $$T$$ is the length of the episode.
 
@@ -37,7 +37,11 @@ Briefly the algorithm corresponding to value iteration is given as follows:
   
   * $$V_t(s) = \max_a \left(r(s,a) + \gamma \sum_{s' \in S} P_{s,s'}(a)V_{t-1}(s')\right) \;\; \forall s \in S.$$
   
-Perform the above step until $$V_{t}(s) = V_{t-1}(s) = V^*(s),\;\; \forall s \in S$$ (Practically stop when |$$V_{t}(s) - V_{t-1}(s)| \leq \epsilon \;\; \forall s \in S$$ where $$\epsilon$$ is the tolerence level.
+Perform the above step until $$V_{t}(s) = V_{t-1}(s) = V^*(s),\;\; \forall s \in S$$. Practically stop when
+
+$$|V_{t}(s) - V_{t-1}(s)| \leq \epsilon \;\; \forall s \in S$$
+
+where $$\epsilon$$ is the tolerence level.
 
 The policy evaluation and imporvement step in the value iteration can be represented as,
 
@@ -96,7 +100,11 @@ Similar arguments as done above will lead to,
 
 $$ T(V_1(s)) - T(V_2(s)) \leq \gamma ||V_1 - V_2||_{\infty}, \;\; \forall s \in S $$
 
-Since $$x \leq y$$ and $$-x \leq y$$ implies $$|x| \leq y$$. Hence we have,
+Since $$x \leq y$$ and $$-x \leq y$$ implies 
+
+$$|x| \leq y.$$
+ 
+Hence we have,
 
 $$|T(V_2(s)) - T(V_1(s))| \leq \gamma ||V_1 - V_2||_{\infty} \;\; \forall s \in S$$
 
