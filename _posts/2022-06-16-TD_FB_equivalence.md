@@ -11,7 +11,7 @@ The temporal difference (TD) error from eligibility trace update rule is,
 
 $$ \Delta V_t^{TD}(s) = \alpha \delta_t e_t(s) $$
 
-where, $$\delta_t = r_{t+1} + \gamma V(s_{t+1}) - V(s_t)$$ and $e_t(s) = \gamma \lambda e_{t-1}(s) + I_{ss_t}$$ with $$I_{ss_t} = 1$$ if $$s=s_t$$ and $$0$$ otherwise.
+where, $$\delta_t = r_{t+1} + \gamma V(s_{t+1}) - V(s_t)$$ and $$e_t(s) = \gamma \lambda e_{t-1}(s) + I_{ss_t}$$ with $$I_{ss_t} = 1$$ if $$s=s_t$$ and $$0$$ otherwise.
 
 Expanding $$e_t(s)$$ we obtain
 
@@ -39,7 +39,6 @@ $$  +  \delta_3 ( \gamma^3 \lambda^3 I_{ss_0} +  \gamma^2 \lambda^2 I_{ss_1} +  
  $$ = \alpha \left( I_{ss_0} \sum_{k=0}^{T-1} (\gamma \lambda)^k \delta_k +  I_{ss_1} \sum_{k=1}^{T-1} (\gamma \lambda)^{k-1} \delta_k + \dots \right)$$
 
  $$ = \alpha \sum_{t=0}^{T-1} I_{ss_t} \left( \sum_{k=t}^{T-1} (\gamma \lambda)^{k-t} \delta_k \right)$$
-
 
 Now, from the foward view the update rule is,
 
