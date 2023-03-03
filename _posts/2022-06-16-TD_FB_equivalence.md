@@ -6,6 +6,14 @@ description: This blog post explains the equivalence of the forward view and the
 tags: ReinforcementLearning
 categories: rl-posts
 ---
+To Do:
+
+* MC Estimate
+* TD Estimate
+* n-step TD estimate
+* TD($\lambda$) method
+* SARSA algorithm
+* Equivalence of FV and BV
 
 The temporal difference (TD) error from eligibility trace update rule is,
 
