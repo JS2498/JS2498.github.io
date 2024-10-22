@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://js2498.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://js2498.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2024-10-22T17:37:57+00:00</updated><id>https://js2498.github.io/feed.xml</id><title type="html">blank</title><subtitle>Jayath&apos;s website.
+</subtitle><entry><title type="html">Equivalence of Forward and Backward view in TD($\lambda$) method (Incomplete Blog)</title><link href="https://js2498.github.io/blog/2022/TD_FB_equivalence/" rel="alternate" type="text/html" title="Equivalence of Forward and Backward view in TD($\lambda$) method (Incomplete Blog)" /><published>2022-05-02T18:00:00+00:00</published><updated>2022-05-02T18:00:00+00:00</updated><id>https://js2498.github.io/blog/2022/TD_FB_equivalence</id><content type="html" xml:base="https://js2498.github.io/blog/2022/TD_FB_equivalence/"><![CDATA[<p>To Do:</p>
+
+<ul>
+  <li>MC Estimate</li>
+  <li>TD Estimate</li>
+  <li>n-step TD estimate</li>
+  <li>TD($\lambda$) method</li>
+  <li>SARSA algorithm</li>
+  <li>Equivalence of FV and BV</li>
+</ul>
+
+<p>The temporal difference (TD) error from eligibility trace update rule is,</p>
+
+\[\Delta V_t^{TD}(s) = \alpha \delta_t e_t(s)\]
+
+<p>where, \(\delta_t = r_{t+1} + \gamma V(s_{t+1}) - V(s_t)\) and \(e_t(s) = \gamma \lambda e_{t-1}(s) + I_{ss_t}\) with \(I_{ss_t} = 1\) if \(s=s_t\) and \(0\) otherwise.</p>
+
+<p>Expanding \(e_t(s)\) we obtain</p>
+
+<p>\(e_t(s) = I_{ss_t} + \gamma \lambda e_{t-1}(s)\)
+\(e_t(s) = I_{ss_t} + \gamma \lambda \left(\gamma \lambda e_{t-2}(s) + I_{ss_{t-1}}\right)\)
+\(e_t(s) = I_{ss_t} + \gamma \lambda  I_{ss_{t-1}} + \gamma^2 \lambda^2 I_{ss_{t-2}} + \gamma^3 \lambda^3 I_{ss_{t-3}} + \dots\)
+\(e_t(s) = \sum_{k=0}^t (\gamma \lambda)^{t-k} I_{ss_k}\)</p>
+
+<p>The sum of TD errors over the trajectory in backward view for a state $s$ is,</p>
+
+<p>\(\sum_{t=0}^{T-1} \Delta V_t^{TD}(s) = \sum_{t=0}^{T-1} \alpha \delta_t e_t(s)\)
+\(\sum_{t=0}^{T-1} \Delta V_t^{TD}(s) = \sum_{t=0}^{T-1} \alpha \delta_t \left( \sum_{k=0}^{t} (\gamma \lambda)^{t-k} I_{ss_k}\right)\)</p>
+
+<p>Interchanging \(t\) with \(k\) and \(k\) with \(t\) on the RHS, we obtain</p>
+
+\[\sum_{t=0}^{T-1} \Delta V_t^{TD}(s) =  \sum_{k=0}^{T-1} \alpha \delta_t \left( \sum_{t=0}^{k} (\gamma \lambda)^{k-t} I_{ss_k}\right)\]
+
+<p>Expanding the RHS results in,</p>
+
+<p>\(\sum_{t=0}^{T-1} \Delta V_t^{TD}(s) = \alpha \delta_0 (\gamma \lambda)^0 I_{ss_0} + \delta_1 ( \gamma \lambda I_{ss_0} + (\gamma \lambda)^0 I_{ss_1}) +\)
+\(+  \delta_2 ( \gamma^2 \lambda^2 I_{ss_0} +  \gamma \lambda I_{ss_1} +  (\gamma \lambda)^0 I_{ss_2})\)</p>
+
+\[+  \delta_3 ( \gamma^3 \lambda^3 I_{ss_0} +  \gamma^2 \lambda^2 I_{ss_1} +  \gamma \lambda I_{ss_2} + (\gamma \lambda)^0 I_{ss_3}) + \dots\]
+
+\[= \alpha \left( I_{ss_0} \sum_{k=0}^{T-1} (\gamma \lambda)^k \delta_k +  I_{ss_1} \sum_{k=1}^{T-1} (\gamma \lambda)^{k-1} \delta_k + \dots \right)\]
+
+\[= \alpha \sum_{t=0}^{T-1} I_{ss_t} \left( \sum_{k=t}^{T-1} (\gamma \lambda)^{k-t} \delta_k \right)\]
+
+<p>Now, from the foward view the update rule is,</p>
+
+\[\Delta V_t^{\lambda}(s_t) = \alpha (L_t^{\lambda} - V_t(s_t))\]
+
+<p>where, \(L_t^{\lambda}\) is the weighted sum of n-step returns</p>
+
+<p>Dividing the above equation by $\alpha$, we get</p>
+
+<p>\(\frac{1}{\alpha} \Delta V_t^{\lambda}(s_t) = L_t^{\lambda} - V_t(s_t)\)
+\(= - V_t(s_t) + (1-\lambda) (R_{t+1} + \gamma V_t(s_{t+1})) + (1-\lambda)\)</p>]]></content><author><name></name></author><category term="rl-posts" /><category term="ReinforcementLearning" /><summary type="html"><![CDATA[This blog post explains the equivalence of the forward view and the backward view in the Temporal Difference ($\lambda$) method. The same holds true for generalized advantage estimation.]]></summary></entry><entry><title type="html">Monte-Carlo Algorithm with Reward Reshaping for Mountain Car gym environment</title><link href="https://js2498.github.io/blog/2022/code/" rel="alternate" type="text/html" title="Monte-Carlo Algorithm with Reward Reshaping for Mountain Car gym environment" /><published>2022-04-25T18:00:00+00:00</published><updated>2022-04-25T18:00:00+00:00</updated><id>https://js2498.github.io/blog/2022/code</id><content type="html" xml:base="https://js2498.github.io/blog/2022/code/"><![CDATA[<p>This blog post explains the On-policy Every-Visit Monte-Carlo algorithm and its implementation in <em>MountainCar-v0</em> openai-gym environment. It is assumed that the reader has a basic understanding of Markov Decision Process (MDP), value iteration and policy iteration. Refer to <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/">Long-peak into RL- Lilian Weng</a>, which explains all the basic concepts of RL.</p>
+
+<p>For any value-based reinforcement learning (RL) algorithm, <strong><em>prediction (policy evaluation)</em></strong> and <strong><em>control (policy improvement)</em></strong> are the two main steps. Policy evaluation corresponds to finding the state-value for a given policy. The state-value corresponding to state \(s\) for a policy \(\pi\) is given by,</p>
+
+\[v_{\pi}(s) = \mathbb{E}_{\pi}\left[\sum_{t=t_0}^T \gamma^{(t-t_0)} r_t|(s_{t_0}=s)\right]\]
+
+<p>where \(T\) is the episode length and \(\gamma \in (0,1]\) is the discount factor. In Monte-Carlo method, the state-value \(v_{\pi}(s)\) is estimated by averaging the returns over episodes. The return for state \(s\) vistited at time step \(t_0\) while following the policy \(\pi\) is given by,</p>
+
+\[G(s)|_{(s_{t_0} = s)} = \sum_{t=t_0}^T \gamma^{(t-t_0)} r_t\]
+
+<p>In MC method the state-value is estimated as,</p>
+
+\[\hat{v}_{\pi}(s) = \frac{\sum_{n=1}^{N}G_i(s)}{N}\]
+
+<p>Since a state \(s\) can be visited multiple times in a episode, the estimation of state-value function can be either performed using <strong>every-visit Monte Carlo method</strong> or <strong>first-visit Monte Carlo method</strong>. Hence, in the above equation \(N\) is the number of episodes in which the state is visited at least once in first-visit MC method and in every-visit MC method, \(N\) represents the number of times a state is visited including the possible multiple visits in a single episode. Here, \(G_i(s)\) is the return obtained corresponding to the \(i^{\rm th}\) visit to the state \(s\). Following policy \(\pi\) will only help us to estimate the state-value corresponding to policy \(\pi\) and doesn’t improve the policy. To improve the policy we need to try different policies i.e., <strong>exploration</strong> has to be done. Hence we use \(\epsilon\)-soft policy for Monte-Carlo control. In \(\epsilon\)-soft policy, for a state \(s\) the greedy action (action which gives the maximum state-action value) is chosen with probability \(\left(1-\epsilon + \frac{\epsilon}{N_a}\right)\) and any other action is chosen with probability given by \(\frac{\epsilon}{N_a}\), where \(N_a\) is the number of different actions that can be chosen in a state \(s\).</p>
+
+<p>We run the Monte-Carlo algorithm on the <em>MountainCar-v0</em> openai-gym environment. The description of the environment is described as follows:</p>
+
+<p><strong>Environment Description</strong>:
+    A car has to travel in a one-dimensional (horizontal) track with the road
+    being similar to a valley between mountains on either side of it. The goal
+    is to reach the top of right side mountain starting in the valley.</p>
+
+<p><strong>State space</strong>: 2-D states representing (position, velocity)</p>
+
+<p><strong>Action space</strong>:</p>
+
+<ol>
+  <li>Push left (accelerate left),</li>
+  <li>Push right (accelerate right),</li>
+  <li>Do nothing</li>
+</ol>
+
+<p><strong>Reward</strong>:</p>
+
+<ul>
+  <li>Reward \(=-1\) for any action taken.</li>
+  <li>Reward \(=0\) on reaching the goal.</li>
+</ul>
+
+<p><strong>Initial state</strong>: \((x,0)\) with \(x\) taking value between \([-0.6,-0.4]\) uniformally.</p>
+
+<p><strong>Termination</strong>:</p>
+
+<ul>
+  <li>On reaching the goal i.e. \(x&gt;0.5\).</li>
+  <li>Else if length of episode is \(200\).</li>
+</ul>
+
+<p><strong>Remember</strong>: \(x \in [-1.2, 0.6]\) and the max speed is \(0.07\) with the state space being continuous.</p>
+
+<p>From the environment description we can observe that the state space of <em>MountainCar-v0</em> environment is continuous, whereas the Monte-Carlo RL methods are tabular methods which stores the state-action values \(Q(s,a)\) for each state and action pair belonging to the finite-dimensional state and action space. Hence we use the following function to discretize the observations.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">discretize_obs</span><span class="p">(</span><span class="n">continuous_state</span><span class="p">):</span>
+    <span class="n">pos_precision</span> <span class="o">=</span> <span class="mf">0.09</span>
+    <span class="n">vel_precision</span> <span class="o">=</span> <span class="mf">0.0007</span>
+
+    <span class="n">min_pos</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.2</span>
+    <span class="n">min_vel</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.07</span>
+
+    <span class="c1"># max_pos = 0.6
+</span>    <span class="c1"># max_vel = 0.07
+</span>
+    <span class="n">dis_pos</span> <span class="o">=</span> <span class="nf">int</span><span class="p">((</span><span class="n">continuous_state</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">min_pos</span><span class="p">)</span> <span class="o">/</span> <span class="n">pos_precision</span><span class="p">)</span>
+    <span class="n">dis_vel</span> <span class="o">=</span> <span class="nf">int</span><span class="p">((</span><span class="n">continuous_state</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">min_vel</span><span class="p">)</span> <span class="o">/</span> <span class="n">vel_precision</span><span class="p">)</span>
+
+    <span class="c1"># print(dis_pos, dis_vel)
+</span>    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="n">dis_pos</span><span class="p">,</span> <span class="n">dis_vel</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>The code for First-visit Monte Carlo method is as follows:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MonteCarlo</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">num_states</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_actions</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="n">epsilon</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">epsilon_min</span> <span class="o">=</span> <span class="mf">0.01</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">eps_reduction</span> <span class="o">=</span> <span class="mf">0.99999</span>  <span class="c1">#(self.epsilon - self.epsilon_min)/400000
+</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">action_space</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="n">n_actions</span><span class="p">)</span>
+
+        <span class="n">self</span><span class="p">.</span><span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">num_states</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">num_states</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_actions</span><span class="p">))</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">Q</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">self</span><span class="p">.</span><span class="n">count</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">num_states</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">num_states</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_actions</span><span class="p">))</span>
+
+        <span class="n">self</span><span class="p">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.001</span>
+
+    <span class="k">def</span> <span class="nf">update_Qvalues</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">episode</span><span class="p">):</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">episode</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">states_visited</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+            <span class="n">states_visited</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">episode</span><span class="p">[</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+
+        <span class="c1"># print(states_visited)
+</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+            <span class="c1"># print(i,T)
+</span>            <span class="n">state</span> <span class="o">=</span> <span class="n">episode</span><span class="p">[</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">episode</span><span class="p">[</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">reward</span> <span class="o">=</span> <span class="n">episode</span><span class="p">[</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+            <span class="c1"># print(list(state))
+</span>
+
+            <span class="n">G</span> <span class="o">=</span>  <span class="n">self</span><span class="p">.</span><span class="n">gamma</span> <span class="o">*</span> <span class="n">G</span> <span class="o">+</span> <span class="n">reward</span>
+
+            <span class="k">if</span> <span class="nf">list</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">states_visited</span><span class="p">[:</span><span class="n">T</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">i</span><span class="p">]</span> <span class="p">:</span>
+                <span class="n">self</span><span class="p">.</span><span class="n">count</span><span class="p">[</span><span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">state</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">action</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">self</span><span class="p">.</span><span class="n">Q</span><span class="p">[</span><span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">state</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">action</span><span class="p">]</span> <span class="o">=</span>   <span class="p">(</span><span class="n">G</span> <span class="o">-</span> <span class="n">self</span><span class="p">.</span><span class="n">Q</span><span class="p">[</span><span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">state</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">action</span><span class="p">])</span><span class="o">/</span><span class="n">self</span><span class="p">.</span><span class="n">count</span><span class="p">[</span><span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">state</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">action</span><span class="p">]</span>
+        <span class="c1"># print(G)
+</span>
+    <span class="k">def</span> <span class="nf">choose_action</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">self</span><span class="p">.</span><span class="n">epsilon</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">action_space</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">Q</span><span class="p">[</span><span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">state</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">:])</span>
+        <span class="k">return</span> <span class="n">action</span>
+</code></pre></div></div>
+
+<p>The First-Vist MC agent as described above was not able to learn a optimal policy to reach the destination even after playing \(10^{6}\) games/episodes. Increasing the number of timesteps in a episode to \(500\) or \(800\) also didn’t work. This may be due to the fact that the agent only receives \(-1\) as the reward till it reaches the destination. Hence the agent is not able to find a policy that would reslut in reaching the destination. To overcome this, an additional reward was given whenever the agent took an action that resulted in the position of next state being greater than \(0.05\). Since the car has to move back and forth to reach the destination, the actions that resulted in car position being less than $0.05$ were not penalized. An extra reward of \(100\) was given whenever the agent reached the destination. It was observed that under this reward reshaping the agent was able to find a optimal policy resulting in the car reaching the destination. Concretely, the changes made to the reward structure was:</p>
+
+<ul>
+  <li>If the position in next state is greater than \(0.05\), then a additional reward of \(\exp({\text {position of next state}\times5})\) was given. (There is no need to multiply position of next state by \(5\). It works for any other value \(&gt;1\))</li>
+  <li>If it reaches the destination then a extra reward of \(100\) was given.</li>
+  <li>The maximum number of steps in a episode was increased to \(500\).</li>
+</ul>
+
+<p>The corresponding code for training the agent is given below:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="sh">"</span><span class="s">MountainCar-v0</span><span class="sh">"</span><span class="p">)</span>  <span class="c1"># specify the environment you wish to have
+</span><span class="n">env</span><span class="p">.</span><span class="n">_max_episodes_steps</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">env</span><span class="p">.</span><span class="n">_max_episode_steps</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="n">lr</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># learning rate
+</span><span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.99</span> <span class="c1"># discount factor
+</span><span class="n">n_games</span> <span class="o">=</span> <span class="mi">1000000</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Initial exploration factor
+</span><span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">avg_scores</span> <span class="o">=</span> <span class="p">[]</span>
+
+
+<span class="n">num_states</span> <span class="o">=</span> <span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">observation_space</span><span class="p">.</span><span class="n">high</span> <span class="o">-</span> <span class="n">env</span><span class="p">.</span><span class="n">observation_space</span><span class="p">.</span><span class="n">low</span><span class="p">)</span><span class="o">/</span><span class="p">([</span><span class="n">pos_precision</span><span class="p">,</span> <span class="n">vel_precision</span><span class="p">])</span>
+<span class="n">num_states</span> <span class="o">=</span> <span class="n">num_states</span><span class="p">.</span><span class="nf">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="nc">MonteCarlo</span><span class="p">(</span><span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">,</span> <span class="n">n_actions</span><span class="o">=</span><span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">,</span> <span class="n">num_states</span><span class="o">=</span><span class="n">num_states</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n_games</span><span class="p">):</span>
+    <span class="n">done</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">observation</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">()</span>  <span class="c1"># initalizes the starting state of the car
+</span>    <span class="n">discrete_obs</span> <span class="o">=</span> <span class="nf">discretize_obs</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
+    <span class="n">episode</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">5001</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># print(f"Episode is {i}")
+</span>            <span class="n">env</span><span class="p">.</span><span class="nf">render</span><span class="p">()</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="nf">choose_action</span><span class="p">(</span><span class="n">discrete_obs</span><span class="p">)</span>
+        <span class="n">next_observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+        <span class="n">discrete_next</span> <span class="o">=</span> <span class="nf">discretize_obs</span><span class="p">(</span><span class="n">next_observation</span><span class="p">)</span>
+        <span class="c1"># print(discrete_next, reward, action)
+</span>
+        <span class="k">if</span> <span class="n">next_observation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.05</span><span class="p">:</span>
+            <span class="n">reward</span> <span class="o">+=</span> <span class="n">np</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span><span class="n">next_observation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">done</span><span class="p">:</span>
+            <span class="n">reward</span> <span class="o">+=</span> <span class="mi">100</span>
+        <span class="n">score</span> <span class="o">+=</span> <span class="n">reward</span>
+
+        <span class="n">episode</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="n">discrete_obs</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">reward</span><span class="p">))</span>
+
+        <span class="n">discrete_obs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">copy</span><span class="p">(</span><span class="n">discrete_next</span><span class="p">)</span>
+
+    <span class="n">agent</span><span class="p">.</span><span class="nf">update_Qvalues</span><span class="p">(</span><span class="n">episode</span><span class="p">)</span>
+    <span class="n">agent</span><span class="p">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">max</span><span class="p">((</span><span class="n">agent</span><span class="p">.</span><span class="n">epsilon</span><span class="o">*</span><span class="n">agent</span><span class="p">.</span><span class="n">eps_reduction</span><span class="p">,</span> <span class="n">agent</span><span class="p">.</span><span class="n">epsilon_min</span><span class="p">))</span>
+    <span class="n">scores</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+    <span class="n">avg_scores</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">))</span>
+
+    <span class="nf">if </span><span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">5000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">The average reward is </span><span class="si">{</span><span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="o">-</span><span class="mi">100</span><span class="si">:</span><span class="p">])</span><span class="si">}</span><span class="s"> and epsiode is </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+
+
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n_games</span><span class="p">)]</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">avg_scores</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">Epsiodes</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">"</span><span class="s">Score</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Once the agent was trained, it was run for a specifice number of episodes and most of the times the car reached the destination. The corresponding code is given as follows:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">n_games</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n_games</span><span class="p">):</span>
+    <span class="n">done</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">observation</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">()</span>  <span class="c1"># initalizes the starting state of the car
+</span>    <span class="n">discrete_obs</span> <span class="o">=</span> <span class="nf">discretize_obs</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
+    <span class="n">episodes_length</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">episode_length</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># episode = []
+</span>    <span class="n">avg_scores</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+        <span class="n">env</span><span class="p">.</span><span class="nf">render</span><span class="p">()</span>
+        
+        <span class="n">action</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="nf">choose_action</span><span class="p">(</span><span class="n">discrete_obs</span><span class="p">)</span>
+        <span class="n">next_observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+        <span class="n">discrete_next</span> <span class="o">=</span> <span class="nf">discretize_obs</span><span class="p">(</span><span class="n">next_observation</span><span class="p">)</span>
+        <span class="c1"># print(discrete_next, reward, action)
+</span>
+        <span class="k">if</span> <span class="n">next_observation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.05</span><span class="p">:</span>
+            <span class="n">reward</span> <span class="o">+=</span> <span class="n">np</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span><span class="n">next_observation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">done</span><span class="p">:</span>
+            <span class="n">reward</span> <span class="o">+=</span> <span class="mi">100</span>
+        <span class="n">score</span> <span class="o">+=</span> <span class="n">reward</span>
+
+        <span class="n">discrete_obs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">copy</span><span class="p">(</span><span class="n">discrete_next</span><span class="p">)</span>
+        <span class="n">episode_length</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">episodes_length</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">episode_length</span><span class="p">)</span>
+
+    <span class="n">scores</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+    <span class="n">avg_scores</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]))</span>
+
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">The epsiode is </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s"> with episode length </span><span class="si">{</span><span class="n">episode_length</span><span class="si">}</span><span class="s"> and total reward </span><span class="si">{</span><span class="n">score</span><span class="si">:</span> <span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n_games</span><span class="p">)]</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">avg_scores</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">Epsiodes</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">"</span><span class="s">Score</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>One episode of the agent playing in the <em>MountainCar-v0</em> environment is given below (In the .gif <em>Episode</em> refers to the time-step):</p>
+
+<div class="col-sm mt-3">
+    <figure>
+
+  <picture>
+    <source media="(max-width: 480px)" srcset="/assets/img/MonteCarlo_EveryVisit_MountainCar.gif-480.webp" />
+    <source media="(max-width: 800px)" srcset="/assets/img/MonteCarlo_EveryVisit_MountainCar.gif-800.webp" />
+    <source media="(max-width: 1400px)" srcset="/assets/img/MonteCarlo_EveryVisit_MountainCar.gif-1400.webp" />
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/MonteCarlo_EveryVisit_MountainCar.gif" title="Monte-Carlo agent in Mountain Car environment" />
+
+  </picture>
+
+</figure>
+
+</div>
+
+<p>The complete code of first-vist MC agent for <em>MountainCar-v0</em> can be found <a href="https://github.com/JS2498/CS420-Reinforcement-Learning/blob/main/Assignment_4/OnPolicy_MC_MountainCar.py">here.</a></p>]]></content><author><name></name></author><category term="rl-posts" /><category term="ReinforcementLearning" /><summary type="html"><![CDATA[This blog post explains the On-policy Every-Visit Monte-Carlo algorithm and its implementation in *MountainCar-v0* openai-gym environment.]]></summary></entry><entry><title type="html">Contraction Property of Bellman Operator with contraction operator $\gamma &amp;lt; 1$</title><link href="https://js2498.github.io/blog/2022/Bellman-Operator-Convergence/" rel="alternate" type="text/html" title="Contraction Property of Bellman Operator with contraction operator $\gamma &amp;lt; 1$" /><published>2022-02-20T18:00:00+00:00</published><updated>2022-02-20T18:00:00+00:00</updated><id>https://js2498.github.io/blog/2022/Bellman-Operator-Convergence</id><content type="html" xml:base="https://js2498.github.io/blog/2022/Bellman-Operator-Convergence/"><![CDATA[<p>A Markov Decision Process (MDP) framework is defined using the tuple \((S, A, p, r)\). The state space, \(S\) and the action space \(A\) is assumed to be discrete. The state transition probability \(p: S \times S \times A \to [0,1]\) is the probability mass function (since state and action space are assumed to be discrete) and \(r:S \times A \to \mathbb{R}\) is the reward function.</p>
+
+<p>For the defined MDP settting we consider that the objective is to find a optimal policy \(\pi: S \to A\) (stationary deterministic policy) such that the discounted reward is maximized, i.e.,</p>
+
+\[\pi^* =  {\rm argmax_{\pi}} \mathbb{E}\left[\sum_{t=0}^T \gamma^t r(s_t, \pi(s_t))) \right]\]
+
+<p>where \(s_t\) is the state at time instant \(t\), \(a_t = \pi(s_t)\) is the action taken at time instant $t$ follwing the policy \(\pi\), \(\gamma \in (0,1]\) is the discount factor and \(T\) is the length of the episode.</p>
+
+<p>For a given policy \(\pi\), the state \(s \in S\) is associated with a value and is given by,</p>
+
+\[V_{\pi}(s) = \mathbb{E} \left[\sum_{t=0}^T \gamma^t r(s_t, \pi(s_t)|s_0=s\right]\]
+
+<p>The state value \(V_{\pi}(s)\) is the total discounted reward obtained by starting from state \(s\) and then following the policy \(\pi\) over the entire episode.</p>
+
+<p>We can show that the state value \(V_{\pi}(s)\) to be,</p>
+
+\[V_{\pi}(s) =  \mathbb{E}[r(s, \pi(s))] + \gamma \sum_{s' \in S} P_{s,s'}(\pi(s)) V_{\pi}(s)\]
+
+<p>where \(P_{s,s'}(\pi(s))\) is the probability associated with the transition from state \(s\) to \(s'\) when action \(\pi(s)\) is taken being in state \(s\). It it interpreted as the expected sum of immediate reward and the discounted future reward with discount factor \(\gamma\).</p>
+
+<p>A optimal policy \(\pi^*\) and the corrsponding optimal value \(V_{\pi^*}(s) \; \; \forall s \in S\) can be obtained by a iterative algorithm called as value iteration. (We can also obtain it by policy iteration. Both value iterationa and policy iteration are dynamic programming algorithms.)</p>
+
+<p>Briefly the algorithm corresponding to value iteration is given as follows:</p>
+
+<ul>
+  <li>
+    <p>\(\textbf{Initalization}\) : Initialize \(V_0(s) \text{ arbitrarily } \; \;  \forall s \in S.\)</p>
+  </li>
+  <li>
+    <p>for \(t=1,2,\dots\)</p>
+
+    <ul>
+      <li>
+\[V_t(s) = \max_a \left(r(s,a) + \gamma \sum_{s' \in S} P_{s,s'}(a)V_{t-1}(s')\right) \;\; \forall s \in S.\]
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Perform the above step until \(V_{t}(s) = V_{t-1}(s) = V^*(s),\;\; \forall s \in S\). Practically stop when</p>
+
+\[|V_{t}(s) - V_{t-1}(s)| \leq \epsilon \;\; \forall s \in S\]
+
+<p>where \(\epsilon\) is the tolerence level.</p>
+
+<p>The policy evaluation and imporvement step in the value iteration can be represented as,</p>
+
+\[T(V(s)) =  \max_a \left(r(s,a) + \gamma \sum_{s' \in S} P_{s,s'}(a)V(s')\right) \;\; \forall s \in S,\]
+
+<p>where \(T: \mathbb{R}^{|S|} \to \mathbb{R}^{|S|}\) is called the Bellman Operator. Let \(\mathbf{V} = \{V(s) : s\in S\}\) be the \(|S|\)-dimensional vector. Then we can show that \(\mathbf{V}^*\) is unique (i.e., \(T(\mathbf{V}) \neq \mathbf{V} \;\; \forall \; \mathbf{V} \neq \mathbf{V}^*\)). Hence, \(\mathbf{V}^*\) is called the fixed point of operator $T$. This arises due to the fact that the Bellman operator $T$ has the contraction property.
+In the below, we prove the contraction propety by showing that,</p>
+
+\[||T(V_1) - T(V_2)||_{\infty} \leq \gamma ||V_1 - V_2||_{\infty}\]
+
+<p>where, \(\gamma \in (0,1)\) is the discount factor.</p>
+
+<p>Consider state \(s \in S\). The Bellman operator is defined as,</p>
+
+\[T(V_1(s)) = \max_{a \in A} \left(R(s,a) + \gamma \sum_{s' \in S} P_{s,s'}(a) V_1(s')\right)\]
+
+\[T(V_2(s)) = \max_{a \in A} \left(R(s,a) + \gamma \sum_{s' \in S} P_{s,s'}(a) V_2(s')\right)\]
+
+<p>Let the optimal actions,</p>
+
+\[a_1^* = \underset{a \in A}{\operatorname{\argmax}} \left(R(s,a) + \gamma \sum_{s' \in S} P_{s,s'}(a) V_1(s')\right)\]
+
+\[a_2^* = \underset{a \in A}{\operatorname{\argmax}} \left(R(s,a) + \gamma \sum_{s' \in S} P_{s,s'}(a) V_2(s')\right)\]
+
+<p>Now,</p>
+
+\[T(V_1) - T(V_2) = \left(R(s,a_1^*) + \gamma \sum_{s' \in S} P_{s,s'}(a_1^*) V_1(s')\right) - \left(R(s,a_2^*) + \gamma \sum_{s' \in S} P_{s,s'}(a_2^*) V_2(s')\right)\]
+
+<p>Since,</p>
+
+\[\left(R(s,a_2^*) + \gamma \sum_{s' \in S} P_{s,s'}(a_2^*) V_2(s')\right) \geq \left(R(s,a) + \gamma \sum_{s' \in S} P_{s,s'}(a) V_2(s')\right) \;\; \forall a \in A\]
+
+<p>Therefore,</p>
+
+\[T(V_1(s)) - T(V_2(s)) \leq  \left(R(s,a_1^*) + \gamma \sum_{s' \in S} P_{s,s'}(a_1^*) V_1(s')\right) - \left(R(s,a_1^*) + \gamma \sum_{s' \in S} P_{s,s'}(a_1^*) V_2(s')\right) \;\; (\because a_1^* \in A)\]
+
+\[T(V_1(s)) - T(V_2(s)) \leq \gamma \sum_{s' \in S} P_{s,s'}(a_1^*) \left( V_1(s') - V_2(s')\right) \;\; (\because a_1^* \in A)\]
+
+<p>Now \(\forall s' \in S\) we have,</p>
+
+\[V_1(s') - V_2(s) \leq \max_{s' \in S} |V_1(s') - V_2(s')| = ||V_1 - V_2||_{\infty}.\]
+
+<p>Hence,</p>
+
+\[T(V_1(s)) - T(V_2(s)) \leq \gamma \sum_{s' \in S} P_{s,s'} ||V_1 - V_2||_{\infty}\]
+
+\[T(V_1(s)) - T(V_2(s)) \leq \gamma ||V_1 - V_2||_{\infty}, \;\; \forall s \in S \;\; \left(\because \sum_{s' \in S} P_{s,s'} = 1\right)\]
+
+<p>Similarly,</p>
+
+\[T(V_2(s)) - T(V_1(s)) \leq \left(R(s,a_2^*) + \gamma \sum_{s' \in S} P_{s,s'}(a_2^*) V_1(s')\right) - \left(R(s,a_2^*) + \gamma \sum_{s' \in S} P_{s,s'}(a_2^*) V_2(s')\right) \;\; (\because a_1^* \in A)\]
+
+\[T(V_2(s)) - T(V_1(s)) \leq \gamma \sum_{s' \in S} P_{s,s'}(a_2^*) \left( V_1(s') - V_2(s')\right) \;\; (\because a_2^* \in A)\]
+
+<p>Similar arguments as done above will lead to,</p>
+
+\[T(V_1(s)) - T(V_2(s)) \leq \gamma ||V_1 - V_2||_{\infty}, \;\; \forall s \in S\]
+
+<p>Since \(x \leq y\) and \(-x \leq y\) implies</p>
+
+\[|x| \leq y.\]
+
+<p>Hence we have,</p>
+
+\[|T(V_2(s)) - T(V_1(s))| \leq \gamma ||V_1 - V_2||_{\infty} \;\; \forall s \in S\]
+
+<p>As the above expression is true for all \(s\in S\). We have,</p>
+
+\[||T(V_1) - T(V_2)||_{\infty} \leq \gamma ||V_1 - V_2||_{\infty}\]
+
+<h1 id="references">References:</h1>
+
+<ul>
+  <li><a href="https://adityam.github.io/stochastic-control/inf-mdp/discounted-mdp/">Theory: Infinite horizon discounted MDP</a></li>
+  <li>Reinforcement Learning Course (CS420) - IIT Dharwad</li>
+</ul>]]></content><author><name></name></author><category term="rl-posts" /><category term="ReinforcementLearning" /><summary type="html"><![CDATA[This blog post shows that the Bellman Operator used in value iteration is a contraction operator with contraction $\gamma<1$ and with respect to the $l_{\infty}$-norm.]]></summary></entry></feed>

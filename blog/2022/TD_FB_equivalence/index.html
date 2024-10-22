@@ -22,10 +22,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Jayanth  S | blog</title>
+    <title>Jayanth  S | Equivalence of Forward and Backward view in TD($\lambda$) method (Incomplete Blog)</title>
     <meta name="author" content="Jayanth  S" />
-    <meta name="description" content="Jayath's website.
-" />
+    <meta name="description" content="This blog post explains the equivalence of the forward view and the backward view in the Temporal Difference ($\lambda$) method. The same holds true for generalized advantage estimation." />
 
 
     <!-- Bootstrap & MDB -->
@@ -45,7 +44,7 @@
     <link rel="shortcut icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚛️</text></svg>">
     
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="https://js2498.github.io/blog/">
+    <link rel="canonical" href="https://js2498.github.io/blog/2022/TD_FB_equivalence/">
     
     <!-- Dark Mode -->
     
@@ -84,7 +83,7 @@
               
               <!-- Blog -->
               <li class="nav-item active">
-                <a class="nav-link" href="/blog/">blog<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/blog/">blog</a>
               </li>
 
               <!-- Other pages -->
@@ -104,8 +103,8 @@
               </li>
 
               <!-- Toogle theme mode -->
-              <div class = "toggle-container">
-                <a id = "light-toggle">
+              <div class="toggle-container">
+                <a id="light-toggle">
                   <i class="fas fa-moon"></i>
                   <i class="fas fa-sun"></i>
                 </a>
@@ -118,136 +117,84 @@
 
     <!-- Content -->
     <div class="container mt-5">
-      <div class="post">
+      <!-- _layouts/post.html -->
 
-  <div class="header-bar">
-    <h1>Jayanth's Blog</h1>
-    <h2></h2>
-  </div>
+<div class="post">
 
-
-  <ul class="post-list">
-    
-
-    
-    
-    
-    
-
-    <li>
-      <h3>
-        
-          <a class="post-title" href="/blog/2022/TD_FB_equivalence/">Equivalence of Forward and Backward view in TD($\lambda$) method (Incomplete Blog)</a>
-        
-      </h3>
-      <p>This blog post explains the equivalence of the forward view and the backward view in the Temporal Difference ($\lambda$) method. The same holds true for generalized advantage estimation.</p>
-      <p class="post-meta"> 2 min read &nbsp; &middot; &nbsp;
-        May 2, 2022
-      </p>
-      <p class="post-tags">
-        <a href="/blog/2022">
-          <i class="fas fa-calendar fa-sm"></i> 2022 </a>
-
+  <header class="post-header">
+    <h1 class="post-title">Equivalence of Forward and Backward view in TD($\lambda$) method (Incomplete Blog)</h1>
+    <p class="post-meta">May 2, 2022</p>
+    <p class="post-tags">
+      <a href="/blog/2022"> <i class="fas fa-calendar fa-sm"></i> 2022 </a>
+        ·  
+        <a href="/blog/tag/ReinforcementLearning">
+          <i class="fas fa-hashtag fa-sm"></i> ReinforcementLearning</a>  
           
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/tag/ReinforcementLearning">
-              <i class="fas fa-hashtag fa-sm"></i> ReinforcementLearning</a> &nbsp;
-              
+        ·  
+        <a href="/blog/category/rl-posts">
+          <i class="fas fa-tag fa-sm"></i> rl-posts</a>  
           
 
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/category/rl-posts">
-              <i class="fas fa-tag fa-sm"></i> rl-posts</a> &nbsp;
-              
-          
     </p>
-    </li>
+  </header>
 
-    
+  <article class="post-content">
+    <p>To Do:</p>
 
-    
-    
-    
-    
+<ul>
+  <li>MC Estimate</li>
+  <li>TD Estimate</li>
+  <li>n-step TD estimate</li>
+  <li>TD($\lambda$) method</li>
+  <li>SARSA algorithm</li>
+  <li>Equivalence of FV and BV</li>
+</ul>
 
-    <li>
-      <h3>
-        
-          <a class="post-title" href="/blog/2022/code/">Monte-Carlo Algorithm with Reward Reshaping for Mountain Car gym environment</a>
-        
-      </h3>
-      <p>This blog post explains the On-policy Every-Visit Monte-Carlo algorithm and its implementation in *MountainCar-v0* openai-gym environment.</p>
-      <p class="post-meta"> 13 min read &nbsp; &middot; &nbsp;
-        April 25, 2022
-      </p>
-      <p class="post-tags">
-        <a href="/blog/2022">
-          <i class="fas fa-calendar fa-sm"></i> 2022 </a>
+<p>The temporal difference (TD) error from eligibility trace update rule is,</p>
 
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/tag/ReinforcementLearning">
-              <i class="fas fa-hashtag fa-sm"></i> ReinforcementLearning</a> &nbsp;
-              
-          
+\[\Delta V_t^{TD}(s) = \alpha \delta_t e_t(s)\]
 
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/category/rl-posts">
-              <i class="fas fa-tag fa-sm"></i> rl-posts</a> &nbsp;
-              
-          
-    </p>
-    </li>
+<p>where, \(\delta_t = r_{t+1} + \gamma V(s_{t+1}) - V(s_t)\) and \(e_t(s) = \gamma \lambda e_{t-1}(s) + I_{ss_t}\) with \(I_{ss_t} = 1\) if \(s=s_t\) and \(0\) otherwise.</p>
 
-    
+<p>Expanding \(e_t(s)\) we obtain</p>
 
-    
-    
-    
-    
+<p>\(e_t(s) = I_{ss_t} + \gamma \lambda e_{t-1}(s)\)
+\(e_t(s) = I_{ss_t} + \gamma \lambda \left(\gamma \lambda e_{t-2}(s) + I_{ss_{t-1}}\right)\)
+\(e_t(s) = I_{ss_t} + \gamma \lambda  I_{ss_{t-1}} + \gamma^2 \lambda^2 I_{ss_{t-2}} + \gamma^3 \lambda^3 I_{ss_{t-3}} + \dots\)
+\(e_t(s) = \sum_{k=0}^t (\gamma \lambda)^{t-k} I_{ss_k}\)</p>
 
-    <li>
-      <h3>
-        
-          <a class="post-title" href="/blog/2022/Bellman-Operator-Convergence/">Contraction Property of Bellman Operator with contraction operator $\gamma < 1$</a>
-        
-      </h3>
-      <p>This blog post shows that the Bellman Operator used in value iteration is a contraction operator with contraction $\gamma<1$ and with respect to the $l_{\infty}$-norm.</p>
-      <p class="post-meta"> 5 min read &nbsp; &middot; &nbsp;
-        February 20, 2022
-      </p>
-      <p class="post-tags">
-        <a href="/blog/2022">
-          <i class="fas fa-calendar fa-sm"></i> 2022 </a>
+<p>The sum of TD errors over the trajectory in backward view for a state $s$ is,</p>
 
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/tag/ReinforcementLearning">
-              <i class="fas fa-hashtag fa-sm"></i> ReinforcementLearning</a> &nbsp;
-              
-          
+<p>\(\sum_{t=0}^{T-1} \Delta V_t^{TD}(s) = \sum_{t=0}^{T-1} \alpha \delta_t e_t(s)\)
+\(\sum_{t=0}^{T-1} \Delta V_t^{TD}(s) = \sum_{t=0}^{T-1} \alpha \delta_t \left( \sum_{k=0}^{t} (\gamma \lambda)^{t-k} I_{ss_k}\right)\)</p>
 
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/category/rl-posts">
-              <i class="fas fa-tag fa-sm"></i> rl-posts</a> &nbsp;
-              
-          
-    </p>
-    </li>
+<p>Interchanging \(t\) with \(k\) and \(k\) with \(t\) on the RHS, we obtain</p>
 
-    
-  </ul>
+\[\sum_{t=0}^{T-1} \Delta V_t^{TD}(s) =  \sum_{k=0}^{T-1} \alpha \delta_t \left( \sum_{t=0}^{k} (\gamma \lambda)^{k-t} I_{ss_k}\right)\]
 
-  
+<p>Expanding the RHS results in,</p>
+
+<p>\(\sum_{t=0}^{T-1} \Delta V_t^{TD}(s) = \alpha \delta_0 (\gamma \lambda)^0 I_{ss_0} + \delta_1 ( \gamma \lambda I_{ss_0} + (\gamma \lambda)^0 I_{ss_1}) +\)
+\(+  \delta_2 ( \gamma^2 \lambda^2 I_{ss_0} +  \gamma \lambda I_{ss_1} +  (\gamma \lambda)^0 I_{ss_2})\)</p>
+
+\[+  \delta_3 ( \gamma^3 \lambda^3 I_{ss_0} +  \gamma^2 \lambda^2 I_{ss_1} +  \gamma \lambda I_{ss_2} + (\gamma \lambda)^0 I_{ss_3}) + \dots\]
+
+\[= \alpha \left( I_{ss_0} \sum_{k=0}^{T-1} (\gamma \lambda)^k \delta_k +  I_{ss_1} \sum_{k=1}^{T-1} (\gamma \lambda)^{k-1} \delta_k + \dots \right)\]
+
+\[= \alpha \sum_{t=0}^{T-1} I_{ss_t} \left( \sum_{k=t}^{T-1} (\gamma \lambda)^{k-t} \delta_k \right)\]
+
+<p>Now, from the foward view the update rule is,</p>
+
+\[\Delta V_t^{\lambda}(s_t) = \alpha (L_t^{\lambda} - V_t(s_t))\]
+
+<p>where, \(L_t^{\lambda}\) is the weighted sum of n-step returns</p>
+
+<p>Dividing the above equation by $\alpha$, we get</p>
+
+<p>\(\frac{1}{\alpha} \Delta V_t^{\lambda}(s_t) = L_t^{\lambda} - V_t(s_t)\)
+\(= - V_t(s_t) + (1-\lambda) (R_{t+1} + \gamma V_t(s_{t+1})) + (1-\lambda)\)</p>
+
+  </article>
 
 </div>
 
@@ -255,7 +202,7 @@
 
     <!-- Footer -->    <footer class="sticky-bottom mt-5">
       <div class="container">
-        &copy; Copyright 2024 Jayanth  S. 
+        © Copyright 2024 Jayanth  S. 
       </div>
     </footer>
 
