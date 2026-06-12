@@ -1,14 +1,12 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - JS2498
 
 repo_description_lines_max: 2
 
 github_repos:
-  - alshedivat/al-folio
-  - jekyll/jekyll
-  - twbs/bootstrap
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - mathjax/MathJax
-  - jpswalsh/academicons
+  - JS2498/Reinforcement_Learning_Algorithms
+  - JS2498/Model_Free_E2E_Communication
+  - JS2498/PrecoderNet_HybridBeamforming
+  - JS2498/CS420-Reinforcement-Learning
+  - JS2498/nanoQwen
+  - JS2498/Statistical_Pattern_Recognition

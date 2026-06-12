@@ -1,5 +1,5 @@
 ---
-layout: distill
+layout: post
 title: Contraction Property of Bellman Operator with contraction operator $\gamma < 1$
 date: 2022-02-20 18:00:00
 description: This blog post shows that the Bellman Operator used in value iteration is a contraction operator with contraction $\gamma<1$ and with respect to the $l_{\infty}$-norm.
@@ -87,7 +87,7 @@ Therefore,
 
 $$T(V_1(s)) - T(V_2(s)) \leq  \left(R(s,a_1^*) + \gamma \sum_{s' \in S} P_{s,s'}(a_1^*) V_1(s')\right) - \left(R(s,a_1^*) + \gamma \sum_{s' \in S} P_{s,s'}(a_1^*) V_2(s')\right) \;\; (\because a_1^* \in A)$$
 
-$$ T(V*1(s)) - T(V_2(s)) \leq \gamma \sum*{s' \in S} P\_{s,s'}(a_1^_) \left( V_1(s') - V_2(s')\right) \;\; (\because a_1^_ \in A)$$
+$$ T(V*1(s)) - T(V_2(s)) \leq \gamma \sum*{s' \in S} P\_{s,s'}(a*1^*) \left( V*1(s') - V_2(s')\right) \;\; (\because a_1^* \in A)$$
 
 Now $$\forall s' \in S$$ we have,
 
