@@ -6,9 +6,10 @@ description: This blog post explains the On-policy Every-Visit Monte-Carlo algor
 tags: ReinforcementLearning
 categories: rl-posts
 ---
-This blog post explains the On-policy Every-Visit Monte-Carlo algorithm and its implementation in *MountainCar-v0* openai-gym environment. It is assumed that the reader has a basic understanding of Markov Decision Process (MDP), value iteration and policy iteration. Refer to [Long-peak into RL- Lilian Weng](https://lilianweng.github.io/posts/2018-02-19-rl-overview/), which explains all the basic concepts of RL.
 
-For any value-based reinforcement learning (RL) algorithm, ***prediction (policy evaluation)*** and ***control (policy improvement)*** are the two main steps. Policy evaluation corresponds to finding the state-value for a given policy. The state-value corresponding to state $$s$$ for a policy $$\pi$$ is given by,
+This blog post explains the On-policy Every-Visit Monte-Carlo algorithm and its implementation in _MountainCar-v0_ openai-gym environment. It is assumed that the reader has a basic understanding of Markov Decision Process (MDP), value iteration and policy iteration. Refer to [Long-peak into RL- Lilian Weng](https://lilianweng.github.io/posts/2018-02-19-rl-overview/), which explains all the basic concepts of RL.
+
+For any value-based reinforcement learning (RL) algorithm, **_prediction (policy evaluation)_** and **_control (policy improvement)_** are the two main steps. Policy evaluation corresponds to finding the state-value for a given policy. The state-value corresponding to state $$s$$ for a policy $$\pi$$ is given by,
 
 $$v_{\pi}(s) = \mathbb{E}_{\pi}\left[\sum_{t=t_0}^T \gamma^{(t-t_0)} r_t|(s_{t_0}=s)\right]$$
 
@@ -20,14 +21,14 @@ In MC method the state-value is estimated as,
 
 $$\hat{v}_{\pi}(s) = \frac{\sum_{n=1}^{N}G_i(s)}{N}$$
 
-Since a state $$s$$ can be visited multiple times in a episode, the estimation of state-value function can be either performed using **every-visit Monte Carlo method** or **first-visit Monte Carlo method**. Hence, in the above equation $$N$$ is the number of episodes in which the state is visited at least once in first-visit MC method and in every-visit MC method, $$N$$ represents the number of times a state is visited including the possible multiple visits in a single episode. Here, $$G_i(s)$$ is the return obtained corresponding to the $$i^{\rm th}$$ visit to the state $$s$$. Following policy $$\pi$$ will only help us to estimate the state-value corresponding to policy $$\pi$$ and doesn't improve the policy. To improve the policy we need to try different policies i.e., **exploration** has to be done. Hence we use $$\epsilon$$-soft policy for Monte-Carlo control. In $$\epsilon$$-soft policy, for a state $$s$$ the greedy action (action which gives the maximum state-action value) is chosen with probability $$\left(1-\epsilon + \frac{\epsilon}{N_a}\right)$$ and any other action is chosen with probability given by $$\frac{\epsilon}{N_a}$$, where $$N_a$$ is the number of different actions that can be chosen in a state $$s$$. 
+Since a state $$s$$ can be visited multiple times in a episode, the estimation of state-value function can be either performed using **every-visit Monte Carlo method** or **first-visit Monte Carlo method**. Hence, in the above equation $$N$$ is the number of episodes in which the state is visited at least once in first-visit MC method and in every-visit MC method, $$N$$ represents the number of times a state is visited including the possible multiple visits in a single episode. Here, $$G_i(s)$$ is the return obtained corresponding to the $$i^{\rm th}$$ visit to the state $$s$$. Following policy $$\pi$$ will only help us to estimate the state-value corresponding to policy $$\pi$$ and doesn't improve the policy. To improve the policy we need to try different policies i.e., **exploration** has to be done. Hence we use $$\epsilon$$-soft policy for Monte-Carlo control. In $$\epsilon$$-soft policy, for a state $$s$$ the greedy action (action which gives the maximum state-action value) is chosen with probability $$\left(1-\epsilon + \frac{\epsilon}{N_a}\right)$$ and any other action is chosen with probability given by $$\frac{\epsilon}{N_a}$$, where $$N_a$$ is the number of different actions that can be chosen in a state $$s$$.
 
-We run the Monte-Carlo algorithm on the *MountainCar-v0* openai-gym environment. The description of the environment is described as follows:
+We run the Monte-Carlo algorithm on the _MountainCar-v0_ openai-gym environment. The description of the environment is described as follows:
 
 **Environment Description**:
-    A car has to travel in a one-dimensional (horizontal) track with the road
-    being similar to a valley between mountains on either side of it. The goal
-    is to reach the top of right side mountain starting in the valley.
+A car has to travel in a one-dimensional (horizontal) track with the road
+being similar to a valley between mountains on either side of it. The goal
+is to reach the top of right side mountain starting in the valley.
 
 **State space**: 2-D states representing (position, velocity)
 
@@ -39,19 +40,19 @@ We run the Monte-Carlo algorithm on the *MountainCar-v0* openai-gym environment.
 
 **Reward**:
 
-* Reward $$=-1$$ for any action taken.
-* Reward $$=0$$ on reaching the goal.
+- Reward $$=-1$$ for any action taken.
+- Reward $$=0$$ on reaching the goal.
 
 **Initial state**: $$(x,0)$$ with $$x$$ taking value between $$[-0.6,-0.4]$$ uniformally.
 
 **Termination**:
 
-* On reaching the goal i.e. $$x>0.5$$.
-* Else if length of episode is $$200$$.
+- On reaching the goal i.e. $$x>0.5$$.
+- Else if length of episode is $$200$$.
 
 **Remember**: $$x \in [-1.2, 0.6]$$ and the max speed is $$0.07$$ with the state space being continuous.
 
-From the environment description we can observe that the state space of *MountainCar-v0* environment is continuous, whereas the Monte-Carlo RL methods are tabular methods which stores the state-action values $$Q(s,a)$$ for each state and action pair belonging to the finite-dimensional state and action space. Hence we use the following function to discretize the observations.
+From the environment description we can observe that the state space of _MountainCar-v0_ environment is continuous, whereas the Monte-Carlo RL methods are tabular methods which stores the state-action values $$Q(s,a)$$ for each state and action pair belonging to the finite-dimensional state and action space. Hence we use the following function to discretize the observations.
 
 ```python
 def discretize_obs(continuous_state):
@@ -124,9 +125,9 @@ class MonteCarlo:
 
 The First-Vist MC agent as described above was not able to learn a optimal policy to reach the destination even after playing $$10^{6}$$ games/episodes. Increasing the number of timesteps in a episode to $$500$$ or $$800$$ also didn't work. This may be due to the fact that the agent only receives $$-1$$ as the reward till it reaches the destination. Hence the agent is not able to find a policy that would reslut in reaching the destination. To overcome this, an additional reward was given whenever the agent took an action that resulted in the position of next state being greater than $$0.05$$. Since the car has to move back and forth to reach the destination, the actions that resulted in car position being less than $0.05$ were not penalized. An extra reward of $$100$$ was given whenever the agent reached the destination. It was observed that under this reward reshaping the agent was able to find a optimal policy resulting in the car reaching the destination. Concretely, the changes made to the reward structure was:
 
-* If the position in next state is greater than $$0.05$$, then a additional reward of $$\exp({\text {position of next state}\times5})$$ was given. (There is no need to multiply position of next state by $$5$$. It works for any other value $$>1$$)
-* If it reaches the destination then a extra reward of $$100$$ was given.
-* The maximum number of steps in a episode was increased to $$500$$.
+- If the position in next state is greater than $$0.05$$, then a additional reward of $$\exp({\text {position of next state}\times5})$$ was given. (There is no need to multiply position of next state by $$5$$. It works for any other value $$>1$$)
+- If it reaches the destination then a extra reward of $$100$$ was given.
+- The maximum number of steps in a episode was increased to $$500$$.
 
 The corresponding code for training the agent is given below:
 
@@ -209,7 +210,7 @@ for i in range(n_games):
 
     while not done:
         env.render()
-        
+
         action = agent.choose_action(discrete_obs)
         next_observation, reward, done, info = env.step(action)
         discrete_next = discretize_obs(next_observation)
@@ -238,10 +239,10 @@ plt.ylabel("Score")
 env.close()
 ```
 
-One episode of the agent playing in the *MountainCar-v0* environment is given below (In the .gif *Episode* refers to the time-step):
+One episode of the agent playing in the _MountainCar-v0_ environment is given below (In the .gif _Episode_ refers to the time-step):
 
 <div class="col-sm mt-3">
     {% include figure.liquid path="assets/img/MonteCarlo_EveryVisit_MountainCar.gif" title="Monte-Carlo agent in Mountain Car environment" class="img-fluid rounded z-depth-1" %}
 </div>
 
-The complete code of first-vist MC agent for *MountainCar-v0* can be found [here.](https://github.com/JS2498/CS420-Reinforcement-Learning/blob/main/Assignment_4/OnPolicy_MC_MountainCar.py)
+The complete code of first-vist MC agent for _MountainCar-v0_ can be found [here.](https://github.com/JS2498/CS420-Reinforcement-Learning/blob/main/Assignment_4/OnPolicy_MC_MountainCar.py)

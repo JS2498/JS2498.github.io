@@ -20,7 +20,7 @@ A Markov Decision Process (MDP) framework is defined using the tuple $$(S, A, p,
 
 For the defined MDP settting we consider that the objective is to find a optimal policy $$\pi: S \to A$$ (stationary deterministic policy) such that the discounted reward is maximized, i.e.,
 
-$$ \pi^* =  {\rm argmax_{\pi}} \mathbb{E}\left[\sum_{t=0}^T \gamma^t r(s_t, \pi(s_t))) \right]$$
+$$ \pi^\* = {\rm argmax*{\pi}} \mathbb{E}\left[\sum*{t=0}^T \gamma^t r(s_t, \pi(s_t))) \right]$$
 
 where $$s_t$$ is the state at time instant $$t$$, $$a_t = \pi(s_t)$$ is the action taken at time instant $t$ follwing the policy $$\pi$$, $$\gamma \in (0,1]$$ is the discount factor and $$T$$ is the length of the episode.
 
@@ -40,12 +40,12 @@ A optimal policy $$\pi^*$$ and the corrsponding optimal value $$V_{\pi^*}(s) \; 
 
 Briefly the algorithm corresponding to value iteration is given as follows:
 
-* $$\textbf{Initalization}$$ : Initialize $$V_0(s) \text{ arbitrarily } \; \;  \forall s \in S.$$
+- $$\textbf{Initalization}$$ : Initialize $$V_0(s) \text{ arbitrarily } \; \;  \forall s \in S.$$
 
-* for $$t=1,2,\dots$$
-  
-  * $$V_t(s) = \max_a \left(r(s,a) + \gamma \sum_{s' \in S} P_{s,s'}(a)V_{t-1}(s')\right) \;\; \forall s \in S.$$
-  
+- for $$t=1,2,\dots$$
+
+  - $$V_t(s) = \max_a \left(r(s,a) + \gamma \sum_{s' \in S} P_{s,s'}(a)V_{t-1}(s')\right) \;\; \forall s \in S.$$
+
 Perform the above step until $$V_{t}(s) = V_{t-1}(s) = V^*(s),\;\; \forall s \in S$$. Practically stop when
 
 $$|V_{t}(s) - V_{t-1}(s)| \leq \epsilon \;\; \forall s \in S$$
@@ -54,7 +54,7 @@ where $$\epsilon$$ is the tolerence level.
 
 The policy evaluation and imporvement step in the value iteration can be represented as,
 
-$$ T(V(s)) =  \max_a \left(r(s,a) + \gamma \sum_{s' \in S} P_{s,s'}(a)V(s')\right) \;\; \forall s \in S,$$
+$$ T(V(s)) = \max*a \left(r(s,a) + \gamma \sum*{s' \in S} P\_{s,s'}(a)V(s')\right) \;\; \forall s \in S,$$
 
 where $$T: \mathbb{R}^{|S|} \to \mathbb{R}^{|S|}$$ is called the Bellman Operator. Let $$\mathbf{V} = \{V(s) : s\in S\}$$ be the $$|S|$$-dimensional vector. Then we can show that $$\mathbf{V}^*$$ is unique (i.e., $$T(\mathbf{V}) \neq \mathbf{V} \;\; \forall \; \mathbf{V} \neq \mathbf{V}^*$$). Hence, $$\mathbf{V}^*$$ is called the fixed point of operator $T$. This arises due to the fact that the Bellman operator $T$ has the contraction property.
 In the below, we prove the contraction propety by showing that,
@@ -87,7 +87,7 @@ Therefore,
 
 $$T(V_1(s)) - T(V_2(s)) \leq  \left(R(s,a_1^*) + \gamma \sum_{s' \in S} P_{s,s'}(a_1^*) V_1(s')\right) - \left(R(s,a_1^*) + \gamma \sum_{s' \in S} P_{s,s'}(a_1^*) V_2(s')\right) \;\; (\because a_1^* \in A)$$
 
-$$ T(V_1(s)) - T(V_2(s)) \leq \gamma \sum_{s' \in S} P_{s,s'}(a_1^*) \left( V_1(s') - V_2(s')\right) \;\; (\because a_1^* \in A)$$
+$$ T(V*1(s)) - T(V_2(s)) \leq \gamma \sum*{s' \in S} P\_{s,s'}(a_1^_) \left( V_1(s') - V_2(s')\right) \;\; (\because a_1^_ \in A)$$
 
 Now $$\forall s' \in S$$ we have,
 
@@ -95,7 +95,7 @@ $$V_1(s') - V_2(s) \leq \max_{s' \in S} |V_1(s') - V_2(s')| = ||V_1 - V_2||_{\in
 
 Hence,
 
-$$ T(V_1(s)) - T(V_2(s)) \leq \gamma \sum_{s' \in S} P_{s,s'} ||V_1 - V_2||_{\infty}$$
+$$ T(V*1(s)) - T(V_2(s)) \leq \gamma \sum*{s' \in S} P*{s,s'} ||V_1 - V_2||*{\infty}$$
 
 $$T(V_1(s)) - T(V_2(s)) \leq \gamma ||V_1 - V_2||_{\infty}, \;\; \forall s \in S \;\; \left(\because \sum_{s' \in S} P_{s,s'} = 1\right) $$
 
@@ -107,12 +107,12 @@ $$T(V_2(s)) - T(V_1(s)) \leq \gamma \sum_{s' \in S} P_{s,s'}(a_2^*) \left( V_1(s
 
 Similar arguments as done above will lead to,
 
-$$ T(V_1(s)) - T(V_2(s)) \leq \gamma ||V_1 - V_2||_{\infty}, \;\; \forall s \in S $$
+$$ T(V*1(s)) - T(V_2(s)) \leq \gamma ||V_1 - V_2||*{\infty}, \;\; \forall s \in S $$
 
-Since $$x \leq y$$ and $$-x \leq y$$ implies 
+Since $$x \leq y$$ and $$-x \leq y$$ implies
 
 $$|x| \leq y.$$
- 
+
 Hence we have,
 
 $$|T(V_2(s)) - T(V_1(s))| \leq \gamma ||V_1 - V_2||_{\infty} \;\; \forall s \in S$$
@@ -121,8 +121,7 @@ As the above expression is true for all $$s\in S$$. We have,
 
 $$||T(V_1) - T(V_2)||_{\infty} \leq \gamma ||V_1 - V_2||_{\infty}$$
 
-
 # References:
 
-* [Theory: Infinite horizon discounted MDP](https://adityam.github.io/stochastic-control/inf-mdp/discounted-mdp/)
-* Reinforcement Learning Course (CS420) - IIT Dharwad
+- [Theory: Infinite horizon discounted MDP](https://adityam.github.io/stochastic-control/mdp/discounted-mdp/)
+- Reinforcement Learning Course (CS420) - IIT Dharwad

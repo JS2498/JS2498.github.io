@@ -17,14 +17,15 @@ toc:
   - name: TD(lambda) method
   - name: Equivalence of Forward and Backward View
 ---
+
 To Do:
 
-* MC Estimate
-* TD Estimate
-* n-step TD estimate
-* TD($\lambda$) method
-* SARSA algorithm
-* Equivalence of FV and BV
+- MC Estimate
+- TD Estimate
+- n-step TD estimate
+- TD($\lambda$) method
+- SARSA algorithm
+- Equivalence of FV and BV
 
 The temporal difference (TD) error from eligibility trace update rule is,
 
@@ -42,7 +43,7 @@ $$e_t(s) = \sum_{k=0}^t (\gamma \lambda)^{t-k} I_{ss_k}$$
 The sum of TD errors over the trajectory in backward view for a state $s$ is,
 
 $$\sum_{t=0}^{T-1} \Delta V_t^{TD}(s) = \sum_{t=0}^{T-1} \alpha \delta_t e_t(s) $$
-$$\sum_{t=0}^{T-1} \Delta V_t^{TD}(s) = \sum_{t=0}^{T-1} \alpha \delta_t \left( \sum_{k=0}^{t} (\gamma \lambda)^{t-k} I_{ss_k}\right)$$
+$$\sum*{t=0}^{T-1} \Delta V_t^{TD}(s) = \sum*{t=0}^{T-1} \alpha \delta*t \left( \sum*{k=0}^{t} (\gamma \lambda)^{t-k} I\_{ss_k}\right)$$
 
 Interchanging $$t$$ with $$k$$ and $$k$$ with $$t$$ on the RHS, we obtain
 
@@ -51,13 +52,13 @@ $$\sum_{t=0}^{T-1} \Delta V_t^{TD}(s) =  \sum_{k=0}^{T-1} \alpha \delta_t \left(
 Expanding the RHS results in,
 
 $$\sum_{t=0}^{T-1} \Delta V_t^{TD}(s) = \alpha \delta_0 (\gamma \lambda)^0 I_{ss_0} + \delta_1 ( \gamma \lambda I_{ss_0} + (\gamma \lambda)^0 I_{ss_1}) + $$
-$$ +  \delta_2 ( \gamma^2 \lambda^2 I_{ss_0} +  \gamma \lambda I_{ss_1} +  (\gamma \lambda)^0 I_{ss_2}) $$
+$$ + \delta*2 ( \gamma^2 \lambda^2 I*{ss*0} + \gamma \lambda I*{ss*1} + (\gamma \lambda)^0 I*{ss_2}) $$
 
-$$  +  \delta_3 ( \gamma^3 \lambda^3 I_{ss_0} +  \gamma^2 \lambda^2 I_{ss_1} +  \gamma \lambda I_{ss_2} + (\gamma \lambda)^0 I_{ss_3}) + \dots$$
+$$ + \delta*3 ( \gamma^3 \lambda^3 I*{ss*0} + \gamma^2 \lambda^2 I*{ss*1} + \gamma \lambda I*{ss*2} + (\gamma \lambda)^0 I*{ss_3}) + \dots$$
 
- $$ = \alpha \left( I_{ss_0} \sum_{k=0}^{T-1} (\gamma \lambda)^k \delta_k +  I_{ss_1} \sum_{k=1}^{T-1} (\gamma \lambda)^{k-1} \delta_k + \dots \right)$$
+$$ = \alpha \left( I*{ss_0} \sum*{k=0}^{T-1} (\gamma \lambda)^k \delta*k + I*{ss*1} \sum*{k=1}^{T-1} (\gamma \lambda)^{k-1} \delta_k + \dots \right)$$
 
- $$ = \alpha \sum_{t=0}^{T-1} I_{ss_t} \left( \sum_{k=t}^{T-1} (\gamma \lambda)^{k-t} \delta_k \right)$$
+$$ = \alpha \sum*{t=0}^{T-1} I*{ss*t} \left( \sum*{k=t}^{T-1} (\gamma \lambda)^{k-t} \delta_k \right)$$
 
 Now, from the foward view the update rule is,
 
@@ -68,4 +69,4 @@ where, $$L_t^{\lambda}$$ is the weighted sum of n-step returns
 Dividing the above equation by $\alpha$, we get
 
 $$\frac{1}{\alpha} \Delta V_t^{\lambda}(s_t) = L_t^{\lambda} - V_t(s_t)$$
-$$ = - V_t(s_t) + (1-\lambda) (R_{t+1} + \gamma V_t(s_{t+1})) + (1-\lambda)$$
+$$ = - V*t(s_t) + (1-\lambda) (R*{t+1} + \gamma V*t(s*{t+1})) + (1-\lambda)$$
