@@ -123,5 +123,5 @@ $$||T(V_1) - T(V_2)||_{\infty} \leq \gamma ||V_1 - V_2||_{\infty}$$
 
 # References:
 
-- [Theory: Infinite horizon discounted MDP](https://adityam.github.io/stochastic-control/mdp/discounted-mdp/)
+- [Theory: Infinite horizon discounted MDP](https://adityam.github.io/stochastic-control/mdps/inf-horizon.html)
 - Reinforcement Learning Course (CS420) - IIT Dharwad
