@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://jayanths.github.io/sitemap.xml
+Sitemap: https://js2498.github.io/sitemap.xml
