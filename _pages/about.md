@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Researcher @ <a href='https://www.tcs.com/research-and-innovation'>TCS Research and Innovation Labs</a>
+subtitle: AI/ML Research Specialist @ <a href='https://www.nokia.com/networks/'>Nokia</a> Standards
 
 profile:
   align: right
@@ -16,6 +16,6 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-I currently work as a researcher at **TCS Research and Innovation Labs**. My research interests are Wireless Communication, Stochastic Optimization, Deep Learning, and Reinforcement Learning.
+I'm currently working as an AI/ML Research Specialist at **Nokia** Standards, where I focus on implementing and evaluating AI/ML algorithms for 6G physical layer research. My research interests include Wireless Communication, Deep Learning, Reinforcement Learning, and Stochastic Optimization.
 
 I graduated with an **MS (Research)** degree from the **Indian Institute of Technology, Dharwad (IIT Dharwad)**, India, where I was involved in research on the **Optimization of Age of Information in Wireless Communication Networks** under [Asst. Prof. Rajshekhar V Bhat](https://sites.google.com/view/rajshekhar-v-bhat/home).
