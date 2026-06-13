@@ -134,7 +134,7 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # -----------------------------------------------------------------------------
 
 blog_name: Jayanth S # blog_name will be displayed in your blog page
-blog_description: Notes on Wireless Communication, Reinforcement Learning, and Stochastic Optimization
+blog_description:
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
 
@@ -634,10 +634,10 @@ jsonresume:
   - education
   - publications
   - projects
-  - volunteer
-  - awards
-  - certificates
   - skills
   - languages
   - interests
+  - awards
+  - certificates
+  - volunteer
   - references

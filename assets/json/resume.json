@@ -1,10 +1,9 @@
 {
   "basics": {
     "name": "Jayanth S",
-    "label": "AI/ML Research Engineer",
+    "label": "AI/ML Research Specialist",
     "image": "",
     "email": "jayanths2498@gmail.com",
-    "phone": "+91-9008402628",
     "url": "https://js2498.github.io",
     "summary": "AI/ML Research Engineer with a background in working with deep learning models, building LLM-based retrieval systems, and applying machine learning to wireless communication problems. Hands-on experience with end-to-end ML systems, retrieval pipelines, and experimentation workflows. Current interests include Machine Learning, Stochastic Optimization, Reinforcement Learning, and applied research.",
     "location": {
@@ -48,7 +47,6 @@
       "url": "https://www.tcs.com/research-and-innovation",
       "startDate": "2023-02-01",
       "endDate": "2025-03-01",
-      "summary": "AI/ML research on wireless communication systems.",
       "highlights": [
         "Won the Depth Estimation using mmWave AI/ML Challenge - 2023 organized by NIST (USA) and ITU.",
         "Implemented OFDM and OTFS communication systems on USRP B210 SDRs for real-time wireless prototyping.",
@@ -62,7 +60,6 @@
       "url": "https://liu.se/",
       "startDate": "2022-10-01",
       "endDate": "2022-12-01",
-      "summary": "Visiting research collaboration with Assoc. Prof. Nikolaos Pappas.",
       "highlights": [
         "Worked on stochastic control methods for semantic communication efficiency, Age of Information, and cost-aware scheduling.",
         "Research led to WiOpt 2023 publication with subsequent conference publication as co-author."
@@ -75,9 +72,7 @@
       "startDate": "2022-05-01",
       "endDate": "2022-08-01",
       "summary": "Reinforcement learning for wireless communications.",
-      "highlights": [
-        "Implemented DDPG, TD3, and SAC RL algorithms for hybrid beamforming in single-user MIMO communication systems."
-      ]
+      "highlights": ["Implemented DDPG, TD3, and SAC RL algorithms for hybrid beamforming in single-user MIMO communication systems."]
     }
   ],
   "education": [
@@ -213,27 +208,41 @@
   "projects": [
     {
       "name": "nanoQwen — LLM Implementation from Scratch",
-      "summary": "Implemented a Qwen-style decoder-only Transformer from scratch in PyTorch with RoPE, RMSNorm, GQA, and autoregressive text generation. Built end-to-end pretraining and SFT pipelines with KV-cache decoding and HuggingFace parity validation.",
+      "summary": "Qwen-style decoder-only Transformer built from scratch in PyTorch.",
       "startDate": "2026-01-01",
-      "url": "https://github.com/JS2498/nanoQwen"
+      "url": "https://github.com/JS2498/nanoQwen",
+      "highlights": [
+        "Implemented a Qwen-style decoder-only Transformer from scratch in PyTorch with RoPE, RMSNorm, Grouped-Query Attention (GQA), causal self-attention, and autoregressive text generation.",
+        "Built end-to-end pretraining and supervised fine-tuning (SFT) pipelines with custom dataset preprocessing, mixed-precision training, checkpointing, configurable experiment workflows, and tokenizer integration.",
+        "Developed modular training and inference infrastructure including KV-cache based decoding, HuggingFace parity validation, model evaluation utilities, and configurable scaling for transformer experimentation."
+      ]
     },
     {
       "name": "Policy Gradient Algorithms for Atari Games",
-      "summary": "Applied A2C, A3C, TRPO, and PPO using stablebaselines3 and ray rllib for Pong, Breakout and Space-Invaders.",
+      "summary": "Policy gradient algorithms for Atari game environments.",
       "startDate": "2022-01-01",
-      "url": "https://github.com/JS2498/Reinforcement_Learning_Algorithms"
+      "url": "https://github.com/JS2498/Reinforcement_Learning_Algorithms",
+      "highlights": [
+        "Applied A2C, A3C, TRPO, and PPO based on the stablebaselines3 and ray rllib implementations for Pong, Breakout and Space-Invaders atari games."
+      ]
     },
     {
       "name": "Model-Free End-to-End Communication Systems",
-      "summary": "Implemented model-based and model-free autoencoder-based E2E communication systems for AWGN and Rayleigh Block Fading channels.",
+      "summary": "Auto-encoder based end-to-end communication system for wireless channels.",
       "startDate": "2022-01-01",
-      "url": "https://github.com/JS2498/Model_Free_E2E_Communication"
+      "url": "https://github.com/JS2498/Model_Free_E2E_Communication",
+      "highlights": [
+        "Implemented the model-based and model-free auto-encoder based end-to-end communication system for AWGN and Rayleigh Block Fading channels as in: Fayçal Ait Aoudia and Jakob Hoydis, \"Model-Free Training of End-to-End Communication Systems.\""
+      ]
     },
     {
       "name": "PrecoderNet — Hybrid Beamforming",
-      "summary": "Deep learning precoder for hybrid beamforming in massive MIMO systems using DDPG, TD3, and SAC.",
+      "summary": "Deep learning precoder for hybrid beamforming in massive MIMO systems.",
       "startDate": "2022-01-01",
-      "url": "https://github.com/JS2498/PrecoderNet_HybridBeamforming"
+      "url": "https://github.com/JS2498/PrecoderNet_HybridBeamforming",
+      "highlights": [
+        "Implemented deep learning precoder for hybrid beamforming in massive MIMO systems using DDPG, TD3, and SAC reinforcement learning algorithms."
+      ]
     }
   ]
 }

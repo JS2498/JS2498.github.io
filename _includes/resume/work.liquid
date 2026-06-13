@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-xs-2 cl-sm-2 col-md-2 text-center date-column">
           {% if content.startDate %}
-            {% assign months_arr = "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec" | split: "," %}
+            {% assign months_arr = 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec' | split: ',' %}
             {% assign s_parts = content.startDate | split: '-' %}
             {% assign s_mon = s_parts[1] | plus: 0 | minus: 1 %}
             {% assign startDate = months_arr[s_mon] | append: ' ' | append: s_parts[0] %}
